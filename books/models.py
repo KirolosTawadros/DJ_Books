@@ -29,23 +29,23 @@ ToDo:
 '''
 
 
-class Book(models.Model):
-    title = models.CharField(max_length=100)
-    publish_date= models.DateTimeField(default=timezone.now)
-    price=models.IntegerField()
-    author = models.ForeignKey(User,related_name='book_author',on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.title
-
-
-
 class author(models.Model):
-    name = models.ForeignKey(User,related_name='author_name',on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    birth_date = models.DateField(default=timezone.now)
     biography = models.TextField(max_length=300)
 
     def __str__(self):
         return self.name
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    publish_date= models.DateTimeField(default=timezone.now)
+    price=models.IntegerField()
+    author = models.ForeignKey(author,related_name='book_author',on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
+
+
     
 
 class review(models.Model):
