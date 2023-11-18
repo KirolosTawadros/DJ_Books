@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+
 # Create your models here.
 '''
 Author
@@ -49,5 +50,8 @@ class Book(models.Model):
     
 
 class review(models.Model):
-    pass
+    book = models.ForeignKey(Book,related_name='review_book',on_delete=models.SET_NULL,null=True)
+    reviewer_name = models.CharField(max_length=100)
+    content = models.TextField(max_length=300)
+    
     
