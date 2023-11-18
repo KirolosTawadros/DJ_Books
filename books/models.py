@@ -54,4 +54,6 @@ class review(models.Model):
     reviewer_name = models.CharField(max_length=100)
     content = models.TextField(max_length=300)
     
+    def __str__(self):
+        return self.reviewer_name
     
