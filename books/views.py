@@ -29,3 +29,24 @@ def add_book(request):
     else:
         form = PostForm()    
     return render(request,'books/new.html',{'form':form})
+
+
+
+def edit_book(request,pk):
+    book = Book.objects.get(id = pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST,instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('/books/')
+    else:
+        form = PostForm(instance=book)    
+    return render(request,'books/edit.html',{'form':form})
+
+
+
+
+def delete_book(request,pk):
+    book = Book.objects.get(id = pk)
+    book.delete()
+    return redirect('/books/')
