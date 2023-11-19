@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .models import Book
-from . forms import PostForm
+from . forms import BookForm
 
 # Create your views here.
 
@@ -22,12 +22,12 @@ def book_details(request,pk):
 
 def add_book(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = BookForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/books/')
     else:
-        form = PostForm()    
+        form = BookForm()    
     return render(request,'books/new.html',{'form':form})
 
 
@@ -35,12 +35,12 @@ def add_book(request):
 def edit_book(request,pk):
     book = Book.objects.get(id = pk)
     if request.method == 'POST':
-        form = PostForm(request.POST,instance=book)
+        form = BookForm(request.POST,instance=book)
         if form.is_valid():
             form.save()
             return redirect('/books/')
     else:
-        form = PostForm(instance=book)    
+        form = BookForm(instance=book)    
     return render(request,'books/edit.html',{'form':form})
 
 

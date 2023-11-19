@@ -47,8 +47,6 @@ class Book(models.Model):
         return self.title
 
 
-    
-
 class review(models.Model):
     book = models.ForeignKey(Book,related_name='review_book',on_delete=models.SET_NULL,null=True)
     reviewer_name = models.CharField(max_length=100)
@@ -56,8 +54,3 @@ class review(models.Model):
     
     def __str__(self):
         return self.reviewer_name
-    
-    
-    
-    
-    

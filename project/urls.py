@@ -24,5 +24,5 @@ urlpatterns = [
     path('books/<int:pk>',book_details),
     path('books/new',add_book),
     path('books/<int:pk>/edit',edit_book),
-    path('books/<int:pk>/delete',delete_book)
+    path('books/<int:pk>/delete',delete_book),
 ]
