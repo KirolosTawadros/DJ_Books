@@ -12,6 +12,14 @@ def book_list(request):
 
 
 
+
+def book_details(request,pk):
+    data = Book.objects.get(id = pk)
+    context = {'books':data}
+    
+    return render (request,'books/book_details.html',context)
+
+
 def add_book(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
