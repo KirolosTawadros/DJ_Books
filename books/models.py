@@ -30,7 +30,7 @@ ToDo:
 '''
 
 
-class author(models.Model):
+class Author(models.Model):
     name = models.CharField(max_length=100)
     birth_date = models.DateField(default=timezone.now)
     biography = models.TextField(max_length=300)
@@ -42,12 +42,12 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     publish_date= models.DateTimeField(default=timezone.now)
     price=models.IntegerField()
-    author = models.ForeignKey(author,related_name='book_author',on_delete=models.CASCADE)
+    author = models.ForeignKey(Author,related_name='book_author',on_delete=models.CASCADE)
     def __str__(self):
         return self.title
 
 
-class review(models.Model):
+class Review(models.Model):
     book = models.ForeignKey(Book,related_name='review_book',on_delete=models.SET_NULL,null=True)
     reviewer_name = models.CharField(max_length=100)
     content = models.TextField(max_length=300)
